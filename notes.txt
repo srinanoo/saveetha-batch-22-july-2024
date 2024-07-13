@@ -1,0 +1,26 @@
+in App component
+	- declare different kinds of variables
+		- using js expressions print the values in JSX
+
+	- render by looping
+		- using map method (within JSX)
+		- using array method (within function)
+
+	- conditional rendering
+		- using ternary operator ( () ? : )
+		- using && operator
+
+	- create "components" folder inside "src" folder
+		- create a single .jsx file
+			- create multiple function components
+			- export 1 function as default
+			- export other remaining functions as optional ( {} )
+		- come back to App.jsx
+			- import
+				- import directly at the top by typing a few letters alone... and choose from the dropdown and click enter
+					- use that component inside App function within the JSX
+				- use the component directly and click enter, where the import statement will be created for you at the top automatically
+
+		- pass data (variables) as HTML attributes (aka properties)
+		- retrieve that variables as "props" parameter in the Child Component
+			- render the props in the JSX
