@@ -1,3 +1,37 @@
+GitHub Upload
+    - in github.com
+        - create an empty repository
+    - Prepare your project locally
+        go to terminal
+            - git init 
+                (creates a .git folder inside the project folder)
+            - git add .
+                (will select all modified files which are not present in github already)
+            - git commit -m "description about your upload"
+                (committing the selected files to be uploaded to github)
+            - git branch -M main
+                (commit should be done to this "main" branch in github)
+            - git remote add origin <repository url>.git
+                (mapping the remote repository to the local folder)
+            - git push -u origin main
+                (finally uploading all the committed files to github)
+
+GitHub Deploy
+    - in the project folder
+        - open package.json
+            - in the "scripts" property... add
+                "predeploy": "npm run build",
+                "deploy": "gh-pages -d dist"
+        - open vite.config.js
+            - copy the github repository folder name alone like this... "/reponame/"
+                "base": "/reponame/"
+        - in the terminal, intall gh-pages package
+            npm i -D gh-pages
+                (this "gh-pages" package will be installed as "DevDependencies")
+            - npm run deploy
+                (this will internally run the command "npm run build" and then "gh-pages" will be deployed in the github repository as branch)
+                (this will also take care of hosting the 'gh-pages' branch as GitHub Page, where you can use the link to view the output)
+
 in App component
 	- declare different kinds of variables
 		- using js expressions print the values in JSX
