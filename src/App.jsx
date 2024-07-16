@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import './App.css'
 import PropsComponent, { Child2Component, ChildComponent } from './components/PropsComp'
 
@@ -147,38 +148,67 @@ import PropsComponent, { Child2Component, ChildComponent } from './components/Pr
 //   )
 // }
 
+// function App() {
+//     let name = "Dinesh";
+//     let age = 20;
+//     let active = true;
+//     let subjects = ["HTML", "CSS", "JavaScript", "ReactJs", "NodeJs"];
+  
+//     let output = [];
+//     for(let i = 0; i < subjects.length; i++) {
+//       output.push(<li key={i}>{subjects[i]}</li>)
+//     }
+  
+//     let marks = {
+//       "html": 30,
+//       "css": 30,
+//       "js": 30,
+//       "ReactJs": 30
+//     }
+  
+//   return (
+//     <>
+//       <h1>App Component</h1>
+
+//       <PropsComponent name={name} age={20} data={marks} subjects={subjects} />
+
+//       {
+//         active
+//           ?
+//             <ChildComponent />
+//           :
+//             <Child2Component />
+//       }
+
+//     </>
+//   )
+// }
+
 function App() {
-    let name = "Dinesh";
-    let age = 20;
-    let active = true;
-    let subjects = ["HTML", "CSS", "JavaScript", "ReactJs", "NodeJs"];
-  
-    let output = [];
-    for(let i = 0; i < subjects.length; i++) {
-      output.push(<li key={i}>{subjects[i]}</li>)
-    }
-  
-    let marks = {
-      "html": 30,
-      "css": 30,
-      "js": 30,
-      "ReactJs": 30
-    }
-  
+  // let active = true;
+
+  const [active, setActive] = useState(false)
+  let name = "Dinesh";
+
+  console.log(active);
+  console.log(name);
+
+  const handleChange = () => {
+    console.log("Button is clicked");
+    console.log(active, " - inside the function before variable is updated");
+    setActive(true);
+    console.log(active, " - inside the function after variable is updated");
+  }
+
   return (
     <>
-      <h1>App Component</h1>
-
-      <PropsComponent name={name} age={20} data={marks} subjects={subjects} />
+      <p>Active: {active.toString()}</p>
+      <p>Name: {name}</p>
+      <p><button onClick={handleChange}>Click</button></p>
 
       {
-        active
-          ?
-            <ChildComponent />
-          :
-            <Child2Component />
+        active && <ChildComponent />
       }
-
     </>
   )
 }
