@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css'
 import PropsComponent, { Child2Component, ChildComponent } from './components/PropsComp'
+import axios from 'axios';
 
 // function App() {
 //   return (
@@ -184,30 +185,227 @@ import PropsComponent, { Child2Component, ChildComponent } from './components/Pr
 //   )
 // }
 
+// function App() {
+//   // let active = true;
+
+//   const [active, setActive] = useState(false)
+//   let name = "Dinesh";
+
+//   console.log(active);
+//   console.log(name);
+
+//   const handleChange = () => {
+//     console.log("Button is clicked");
+//     console.log(active, " - inside the function before variable is updated");
+//     setActive(true);
+//     console.log(active, " - inside the function after variable is updated");
+//   }
+
+//   return (
+//     <>
+//       <p>Active: {active.toString()}</p>
+//       <p>Name: {name}</p>
+//       <p><button onClick={handleChange}>Click</button></p>
+
+//       {
+//         active && <ChildComponent />
+//       }
+//     </>
+//   )
+// }
+
+// function App() {
+//   let usernameRef = useRef("");
+//   let passwordRef = useRef("");
+
+//   const [usernameState, setUsernameState] = useState("");
+//   const [passwordState, setPasswordState] = useState("");
+  
+//   const handleImpureForm = () => {
+//     console.log("Impure React Way!");
+//     let username = document.getElementById("username").value;
+//     let password = document.getElementById("password").value;
+//     console.log(username, password);
+//   }
+
+//   const handleHalfReactForm = () => {
+//     console.log("Half React Way!");
+//     let username = usernameRef.current.value;
+//     let password = passwordRef.current.value;
+//     console.log(username, password);
+//   }
+
+//   const handleUsername = (event) => {
+//     console.log(event.target.className);
+//     console.log(event.target.id);
+//     console.log(event.target.value);
+//     setUsernameState(event.target.value);
+//   }
+
+//   const handlePureReactForm = () => {
+//     console.log(usernameState, passwordState);
+//   }
+  
+//   return (
+//     <>
+//       <h1>Impure React Component Way</h1>
+//       <input type="text" id="username" placeholder='Username:' /><br />
+//       <input type="text" id="password" placeholder='Password:' /><br />
+//       <button onClick={handleImpureForm}>Login</button>
+
+//       <br /><br />
+
+//       <h1>Half React Component Way</h1>
+//       <input type="text" ref={usernameRef} placeholder='Username:' /><br />
+//       <input type="text" ref={passwordRef} placeholder='Password:' /><br />
+//       <button onClick={handleHalfReactForm}>Login</button>
+
+//       <br /><br />
+
+//       <h1>Pure React Component Way</h1>
+//       <input type="text" onChange={handleUsername} id="username" className='clsInput' placeholder='Username:' /><br />
+//       <input type="text" onChange={(e) => {setPasswordState(e.target.value)}} placeholder='Password:' /><br />
+//       <button onClick={handlePureReactForm}>Login</button>
+//     </>
+//   )
+// }
+
+// function App() {
+//   const [toDoList, setToDoList] = useState([]);
+//   const [toDo, setToDo] = useState("");
+
+//   const handleToDoList = () => {
+//     if(toDoList.includes(toDo)) {
+//       alert("Task already exists!");
+//     } else {
+//       let temp = [...toDoList, toDo];
+//       setToDoList(temp);
+//     }
+//   }
+
+//   const handleClose = (e) => {
+//     if(confirm("Are you sure you want to delete this task?")) {
+//       let temp = toDoList.filter((v, i) => i !== parseInt(e.target.id));
+//       setToDoList(temp);
+//     }
+//   }
+
+//   return (
+//     <>
+//       <h1>To Do List</h1>
+//       <input type="text" onChange={(e) => setToDo(e.target.value.trim())} />
+//       <button onClick={handleToDoList}>Add Task</button>
+//       <br /><br />
+//       {
+//         toDoList?.map((v, i) => {
+//           return (
+//             <div key={i}>
+//               <div>
+//                 {v} <button id={i} onClick={handleClose}>X</button>
+//               </div>
+//             </div>
+//           )
+//         })
+//       }
+//     </>
+//   )
+// }
+
+// function App() {
+//   const [toDoList, setToDoList] = useState([]);
+//   const [toDo, setToDo] = useState("");
+
+//   const handleToDoList = () => {
+//     let temp = toDoList;
+//     temp.push(toDo)
+//     setToDoList(temp);
+//   }
+
+//   const handleClose = (e) => {
+//     console.log(e.target.id);
+//   }
+
+//   return (
+//     <>
+//       <h1>To Do List</h1>
+//       <input type="text" onChange={(e) => setToDo(e.target.value.trim())} />
+//       <button onClick={handleToDoList}>Add Task</button>
+//       <br /><br />
+//       {
+//         toDoList.length > 0 && toDoList.map((v, i) => {
+//           return (
+//             <div key={i}>
+//               <div>
+//                 {v} <button id={i} onClick={handleClose}>X</button>
+//               </div>
+//             </div>
+//           )
+//         })
+//       }
+//     </>
+//   )
+// }
+
+// function App() {
+//   const [count, setCount] = useState(0);
+//   const [name, setName] = useState("Dinesh");
+
+//   // useEffect(() => {
+//   //   setCount(1);
+//   // }, []); // is equivalent to componentDidMount of Class Cycle
+
+//   // useEffect(() => {
+//   //   setCount(1);
+//   // }, [count]); // is equivalent to componentDidUpdate of Class Cycle
+
+//   useEffect(() => {
+//     setCount(count + 1);
+//   }, [name]); // is equivalent to componentDidUpdate of Class Cycle
+
+//   return (
+//     <>
+//       Name: {name}<br />
+//       Count: {count}<br />
+//       <button onClick={() => setName("New Name")}>Change Name</button>
+//     </>
+//   )
+// }
+
 function App() {
-  // let active = true;
+  const [universitiesList, setUniversitiesList] = useState([]);
+  const [country, setCountry] = useState("India");
 
-  const [active, setActive] = useState(false)
-  let name = "Dinesh";
+  const fetchData = () => {
+    axios.get('http://universities.hipolabs.com/search?country='+country)
+      .then(response => {
+        // console.log(response);
+        setUniversitiesList(response.data);
+      })
+  }
 
-  console.log(active);
-  console.log(name);
+  useEffect(() => {
+    fetchData();
+  },[]);
 
-  const handleChange = () => {
-    console.log("Button is clicked");
-    console.log(active, " - inside the function before variable is updated");
-    setActive(true);
-    console.log(active, " - inside the function after variable is updated");
+  const handleSearch = () => {
+    fetchData();
   }
 
   return (
     <>
-      <p>Active: {active.toString()}</p>
-      <p>Name: {name}</p>
-      <p><button onClick={handleChange}>Click</button></p>
+      <h1>Universities List</h1>
+      <p><input type="text" value={country} onChange={(e) => setCountry(e.target.value)} />
+      <button onClick={handleSearch}>Search</button></p>
 
       {
-        active && <ChildComponent />
+        universitiesList.length > 0 && universitiesList.map((v, i) => {
+          return (
+            <div key={i}>
+              Name: {v.name}<br />
+              Website: {v.web_pages[0]}
+            </div>
+          )
+        })
       }
     </>
   )
