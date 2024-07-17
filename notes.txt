@@ -98,7 +98,7 @@ Thinking In React
 
         - in App.jsx
             - import BrowserRouter, Routes, Route
-                <BrowserRouter>
+                <BrowserRouter basename="/<repository name>"
                     <Routes>
                         <Route path='/' element={<COMP />}></Route>
                     </Routes>
