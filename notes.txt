@@ -58,3 +58,48 @@ in App component
 		- pass data (variables) as HTML attributes (aka properties)
 		- retrieve that variables as "props" parameter in the Child Component
 			- render the props in the JSX
+
+Thinking In React
+    - Project
+        - UI Analysing
+            Pages
+                Home
+                About
+                Contact
+                Products
+                Services
+                Blog
+            Components
+                Header
+                Footer
+                Banner
+                Slider
+                Menu
+                ContactForm
+        - Folder Structure
+            Pages
+                HomePage
+                    HomePage.jsx
+                    HomePage.css
+                    images/
+                        *.jpg
+                AboutPage.jsx
+                AboutPage.css
+                BlogPage.jsx
+                BlogPage.css
+                ContactPage.jsx
+                ContactPage.css
+
+    - Configure the Router
+        - install react router
+            npm i react-router-dom
+
+        - Prepare Files and Folders for the project
+
+        - in App.jsx
+            - import BrowserRouter, Routes, Route
+                <BrowserRouter>
+                    <Routes>
+                        <Route path='/' element={<COMP />}></Route>
+                    </Routes>
+                </BrowserRouter>

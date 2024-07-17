@@ -2,6 +2,13 @@ import { useEffect, useRef, useState } from 'react';
 import './App.css'
 import PropsComponent, { Child2Component, ChildComponent } from './components/PropsComp'
 import axios from 'axios';
+import HomePage from './pages/HomePage/HomePage';
+import AboutPage from './pages/AboutPage/AboutPage';
+import ProjectPage from './pages/ProjectPage/ProjectPage';
+import ContactPage from './pages/ContactPage/ContactPage';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import HeaderComp from './components/HeaderComp/HeaderComp';
+import CEOPage from './pages/AboutPage/CEOPage';
 
 // function App() {
 //   return (
@@ -371,42 +378,59 @@ import axios from 'axios';
 //   )
 // }
 
+// function App() {
+//   const [universitiesList, setUniversitiesList] = useState([]);
+//   const [country, setCountry] = useState("India");
+
+//   const fetchData = () => {
+//     axios.get('http://universities.hipolabs.com/search?country='+country)
+//       .then(response => {
+//         // console.log(response);
+//         setUniversitiesList(response.data);
+//       })
+//   }
+
+//   useEffect(() => {
+//     fetchData();
+//   },[]);
+
+//   const handleSearch = () => {
+//     fetchData();
+//   }
+
+//   return (
+//     <>
+//       <h1>Universities List</h1>
+//       <p><input type="text" value={country} onChange={(e) => setCountry(e.target.value)} />
+//       <button onClick={handleSearch}>Search</button></p>
+
+//       {
+//         universitiesList.length > 0 && universitiesList.map((v, i) => {
+//           return (
+//             <div key={i}>
+//               Name: {v.name}<br />
+//               Website: {v.web_pages[0]}
+//             </div>
+//           )
+//         })
+//       }
+//     </>
+//   )
+// }
+
 function App() {
-  const [universitiesList, setUniversitiesList] = useState([]);
-  const [country, setCountry] = useState("India");
-
-  const fetchData = () => {
-    axios.get('http://universities.hipolabs.com/search?country='+country)
-      .then(response => {
-        // console.log(response);
-        setUniversitiesList(response.data);
-      })
-  }
-
-  useEffect(() => {
-    fetchData();
-  },[]);
-
-  const handleSearch = () => {
-    fetchData();
-  }
-
   return (
     <>
-      <h1>Universities List</h1>
-      <p><input type="text" value={country} onChange={(e) => setCountry(e.target.value)} />
-      <button onClick={handleSearch}>Search</button></p>
-
-      {
-        universitiesList.length > 0 && universitiesList.map((v, i) => {
-          return (
-            <div key={i}>
-              Name: {v.name}<br />
-              Website: {v.web_pages[0]}
-            </div>
-          )
-        })
-      }
+      <BrowserRouter>
+        <HeaderComp />
+        <Routes>
+          <Route path='/' element={<HomePage />}></Route>
+          <Route path='/about' element={<AboutPage />}></Route>
+          <Route path='/about/ceo' element={<CEOPage />}></Route>
+          <Route path='/about/contact' element={<ContactPage />}></Route>
+          <Route path='/project' element={<ProjectPage />}></Route>
+        </Routes>
+      </BrowserRouter>
     </>
   )
 }

@@ -53,3 +53,10 @@ img {
   text-align: center;
   padding: 10px;
 }
+
+a {
+  color: red;
+}
+a.active {
+  color: green;
+}
