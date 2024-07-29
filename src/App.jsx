@@ -9,6 +9,7 @@ import ContactPage from './pages/ContactPage/ContactPage';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import HeaderComp from './components/HeaderComp/HeaderComp';
 import CEOPage from './pages/AboutPage/CEOPage';
+import TraineesListPage from './pages/TraineesPages/TraineesListPage';
 
 // function App() {
 //   return (
@@ -429,6 +430,7 @@ function App() {
           <Route path='/about/ceo' element={<CEOPage />}></Route>
           <Route path='/about/contact' element={<ContactPage />}></Route>
           <Route path='/project' element={<ProjectPage />}></Route>
+          <Route path='/trainees' element={<TraineesListPage />}></Route>
         </Routes>
       </BrowserRouter>
     </>
