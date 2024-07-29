@@ -422,7 +422,7 @@ import TraineesListPage from './pages/TraineesPages/TraineesListPage';
 function App() {
   return (
     <>
-      <BrowserRouter>
+      <BrowserRouter basename='/saveetha-batch-22-july-2024'>
         <HeaderComp />
         <Routes>
           <Route path='/' element={<HomePage />}></Route>

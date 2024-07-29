@@ -6,7 +6,7 @@ export default function TraineesListComp() {
     const [traineesList, setTraineesList] = useState([]);
 
     const fetchData = async () => {
-        let results = await axios.get('http://localhost:4000/api/v1/trainees/readAllTrainees');
+        let results = await axios.get('https://saveetha-batch-22-july-2024-nodejs.vercel.app/api/v1/trainees/readAllTrainees');
 
         console.log(results.data);
         setTraineesList(results.data?.data);
@@ -19,7 +19,7 @@ export default function TraineesListComp() {
     const handleDeleteTrainee = async (e) => {
         console.log(e.target.id);
         if(confirm("Are you sure you want to delete this Trainee?")) {
-            let results = await axios.delete(`http://localhost:4000/api/v1/trainees/deleteTrainee/${e.target.id}`);
+            let results = await axios.delete(`https://saveetha-batch-22-july-2024-nodejs.vercel.app/api/v1/trainees/deleteTrainee/${e.target.id}`);
             console.log(results);
             if(results.data.msg === "Trainee Deleted Successfully!") {
                 alert(results.data.msg);
