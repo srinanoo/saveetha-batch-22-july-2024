@@ -14,7 +14,8 @@ export default function HeaderComp() {
                 <NavLink to="/">Home</NavLink> | 
                 <NavLink to="/about">About</NavLink> | 
                 <NavLink to="/about/contact">Contact</NavLink> | 
-                <NavLink to="/project">Project</NavLink>
+                <NavLink to="/project">Project</NavLink> |
+                <NavLink to="/trainees">Trainees</NavLink>
             </p>
         </>
     )
